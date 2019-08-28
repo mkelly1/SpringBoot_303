@@ -14,45 +14,45 @@ import javax.validation.Valid;
 @Controller
 public class HomeController {
     @Autowired
-    CourseRepository courseRepository;
+    CarRepository carRepository;
 
     @RequestMapping("/")
     public String listTodo(Model model){
-        model.addAttribute("courses", courseRepository.findAll());
+        model.addAttribute("car", carRepository.findAll());
         return "list";
     }
 
     @GetMapping("/add")
     public String todoForm(Model model){
-        model.addAttribute("course", new Course());
-        return "courseform";
+        model.addAttribute("car", new Car());
+        return "carform";
     }
 
     @PostMapping("/process")
-    public String processForm(@Valid Course course,
+    public String processForm(@Valid Car car,
                               BindingResult result){
         if (result.hasErrors()){
-            return "courseform";
+            return "carform";
         }
-        courseRepository.save(course);
+        carRepository.save(car);
         return "redirect:/";
     }
 
     @RequestMapping("/detail/{id}")
     public String showTodo(@PathVariable("id") long id, Model model) {
-        model.addAttribute("course", courseRepository.findById(id).get());
+        model.addAttribute("car", carRepository.findById(id).get());
         return "show";
     }
 
     @RequestMapping("/update/{id}")
     public String updateTodo(@PathVariable("id") long id, Model model){
-        model.addAttribute("course", courseRepository.findById(id).get());
-        return "courseform";
+        model.addAttribute("car", carRepository.findById(id).get());
+        return "carform";
     }
 
     @RequestMapping("/delete/{id}")
     public String delTodo(@PathVariable("id") long id){
-        courseRepository.deleteById(id);
+        carRepository.deleteById(id);
         return "redirect:/";
     }
 }
