@@ -5,22 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-<h1>To Do List</h1>
-<a href="/add">Add a Task</a><br />
+<h1>Course List</h1>
+<a href="/add">Add a Course</a><br />
 <table>
     <tr>
-        <th>Task Name</th>
-        <th>Due Date</th>
-        <td>Priority</td>
+        <th>Title</th>
+        <th>Instructor</th>
+        <th>Description</th>
+        <td>Credits</td>
     </tr>
-    <tr th:each="todo : ${todos}">
-        <td th:text="${todo.taskName}"></td>
-        <td th:text="${todo.dueDate}"></td>
-        <td th:text="${todo.priority}"></td>
+    <tr th:each="course : ${courses}">
+        <td th:text="${course.title}"></td>
+        <td th:text="${course.instructor}"></td>
+        <td th:text="${course.credit}"></td>
         <td>
-            <a th:href="@{/update/{id}(id=${todo.id})}">Update</a>
-            <a th:href="@{/detail/{id}(id=${todo.id})}">Details</a>
-            <a th:href="@{/delete/{id}(id=${todo.id})}">Delete</a>
+            <a th:href="@{/update/{id}(id=${course.id})}">Update</a>
+            <a th:href="@{/detail/{id}(id=${course.id})}">Details</a>
+            <a th:href="@{/delete/{id}(id=${course.id})}">Delete</a>
         </td></tr>
 </table>
 </body>
